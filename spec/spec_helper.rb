@@ -60,8 +60,20 @@ def new_story(title, description=nil, theme=nil, owner=nil)
     }
 end
 
-def new_v1_asset_xml_with_attribute(name, value)
-  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Asset><Attribute name=\"${name}\">${value}</Attribute></Asset>"
+def new_v1_asset_attribute(name, value)
+  "<Attribute name="+name+">"+value+"</Attribute>"
+end
+
+def new_v1_asset_attribute_as_value(name, value)
+  "<Attribute name="+name+"><value>"+value+"</value></Attribute>"
+end
+
+def new_v1_asset_xml(story)
+  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Asset>"+
+  new_v1_asset_attribute("Name",story.title) +
+  new_v1_asset_attribute_as_value("Owners.Name",story.owner) +
+  new_v1_asset_attribute("Estimate",story.estimate) +
+  "</Asset>"
 end
 
 
