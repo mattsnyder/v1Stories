@@ -18,7 +18,9 @@ module NavigationHelpers
       root_path
     
     # Add more page name => path mappings here
-    
+    when /Story 1/
+       story_path(:number => 1)
+   
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in features/support/paths.rb"

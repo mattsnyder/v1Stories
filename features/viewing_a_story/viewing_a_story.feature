@@ -9,5 +9,8 @@ So I can print it
 	And Theme "Great theme"
 	And Description "Another description that is awesome"
 	And Owner "Jason"
-	When I ask for the story to be shown
-	Then I can see the story's information
+	When I go to Story 1
+	Then I should see "Number 1"
+	And I should see "Dummy Story"
+	And I should see "Great theme"
+	And I should see "Another description that is awesome"
