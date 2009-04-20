@@ -60,6 +60,10 @@ def new_story(title, description=nil, theme=nil, owner=nil)
     }
 end
 
+def new_v1_asset_xml_with_attribute(name, value)
+  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Asset><Attribute name=\"${name}\">${value}</Attribute></Asset>"
+end
+
 
 Spec::Matchers.define(:have_a_story_with_title) do |expected_title|
   match do |story_list|
