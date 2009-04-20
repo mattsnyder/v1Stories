@@ -15,4 +15,5 @@ describe StoriesController do
     get :show, :number => 1
     assigns[:story].should be(@story)
   end
+
 end

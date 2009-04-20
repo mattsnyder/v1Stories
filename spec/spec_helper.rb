@@ -45,3 +45,33 @@ Spec::Runner.configure do |config|
   # 
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
+
+
+def new_story_data(title, description=nil, theme=nil, owner=nil)
+  {:number=>rand(100),:title => title, :description => description, :theme => theme, :owner => owner}
+end
+
+def new_story(title, description=nil, theme=nil, owner=nil)
+  data = new_story_data(title, description=nil, theme=nil, owner=nil)
+  data.inject(Story.new) {|story,data|
+      attribute, value = data
+      story.send(attribute.to_s + "=", value)
+      story
+    }
+end
+
+
+Spec::Matchers.define(:have_a_story_with_title) do |expected_title|
+  match do |story_list|
+    story_list.any? {|story| story.title == expected_title}
+  end
+
+  failure_message_for_should do |story_list|
+    msg = "expected to find a story with title #{expected_title}, but story list contained "
+    story_titles = story_list.map(&:title)
+    msg + story_titles.join(", ")
+  end
+
+end
+
+

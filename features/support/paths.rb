@@ -20,6 +20,9 @@ module NavigationHelpers
     # Add more page name => path mappings here
     when /Story 1/
        story_path(:number => 1)
+       
+    when /Iteration 1/
+      iteration_path(:number => 1)
    
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +

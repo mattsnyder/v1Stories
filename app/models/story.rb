@@ -9,4 +9,17 @@ class Story
       story
     end
   end
+  
+  def Story.find_by_iteration(number)
+    iteration = VersionOne.get_stories_by_iteration(number)
+    
+    iteration[:stories].map do |story|
+      story.inject(Story.new) do |story,pair|
+        key, value = pair
+        story.send(key.to_s+"=", value)
+        story
+      end
+      
+    end
+  end
 end
