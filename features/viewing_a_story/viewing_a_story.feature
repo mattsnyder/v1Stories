@@ -14,3 +14,4 @@ So I can print it
 	And I should see "Dummy Story"
 	And I should see "Great theme"
 	And I should see "Another description that is awesome"
+	And I should see "Jason"
