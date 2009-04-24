@@ -46,9 +46,9 @@ Spec::Runner.configure do |config|
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
 
-
-def new_story_data(title, description=nil, theme=nil, owner=nil)
-  {:number=>rand(100),:title => title, :description => description, :theme => theme, :owner => owner}
+#title=nil, description=nil, estimate=nil, theme=nil, iteration=nil, owner=nil, number=nil
+def new_story_data(title, description=nil, theme=nil, owner=nil, estimate=nil, iteration=nil)
+  {:number=>rand(100),:title => title, :description => description, :theme => theme, :owner => owner, :estimate => estimate, :iteration => iteration}
 end
 
 def new_story(title, description=nil, theme=nil, owner=nil)
@@ -68,11 +68,11 @@ def new_v1_asset_attribute_as_value(name, value)
   "<Attribute name="+name+"><value>"+value+"</value></Attribute>"
 end
 
-def new_v1_asset_xml(story)
+def new_v1_asset_xml(story_data)
   "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Asset>"+
-  new_v1_asset_attribute("Name",story.title) +
-  new_v1_asset_attribute_as_value("Owners.Name",story.owner) +
-  new_v1_asset_attribute("Estimate",story.estimate) +
+  new_v1_asset_attribute("Name",story_data[:title]) +
+  new_v1_asset_attribute_as_value("Owners.Name",story_data[:owner]) +
+  new_v1_asset_attribute("Estimate",story_data[:estimate]) +
   "</Asset>"
 end
 

@@ -1,14 +1,5 @@
 class Story
-  attr_accessor :number, :title, :theme, :description, :owner, :estimate
-  
-  def initialize(title=nil, description=nil, estimate=nil, theme=nil, iteration=nil, owner=nil, number=nil)
-    @number = number
-    @title = title
-    @them = theme
-    @description = description
-    @owner = owner
-    @estimate = estimate
-  end
+  attr_accessor :number, :title, :theme, :description, :owner, :estimate, :iteration
   
   def self.find(number)
     story_attributes = VersionOne.get_story(number)
