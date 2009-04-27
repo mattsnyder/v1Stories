@@ -16,3 +16,5 @@ end
 require 'cucumber/rails/rspec'
 require 'webrat/core/matchers'
 require 'spec/mocks'
+
+require 'spec/spec_helper.rb'

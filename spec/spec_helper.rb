@@ -46,9 +46,9 @@ Spec::Runner.configure do |config|
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
 
-#title=nil, description=nil, estimate=nil, theme=nil, iteration=nil, owner=nil, number=nil
-def new_story_data(title, description=nil, theme=nil, owner=nil, estimate=nil, iteration=nil)
-  {:number=>rand(100),:title => title, :description => description, :theme => theme, :owner => owner, :estimate => estimate, :iteration => iteration}
+def new_story_data(title, description=nil, theme=nil, owner=nil, estimate=nil, iteration=nil, number=nil)
+  number = rand(100) if(number.nil?)
+  {:number=>number,:title => title, :description => description, :theme => theme, :owner => owner, :estimate => estimate, :iteration => iteration}
 end
 
 def new_story(title, description=nil, theme=nil, owner=nil)
@@ -60,20 +60,19 @@ def new_story(title, description=nil, theme=nil, owner=nil)
     }
 end
 
-def new_v1_asset_attribute(name, value)
-  "<Attribute name="+name+">"+value+"</Attribute>"
-end
-
-def new_v1_asset_attribute_as_value(name, value)
-  "<Attribute name="+name+"><value>"+value+"</value></Attribute>"
-end
-
-def new_v1_asset_xml(story_data)
-  "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Asset>"+
-  new_v1_asset_attribute("Name",story_data[:title]) +
-  new_v1_asset_attribute_as_value("Owners.Name",story_data[:owner]) +
-  new_v1_asset_attribute("Estimate",story_data[:estimate]) +
-  "</Asset>"
+def new_asset_xml(story_data)
+   <<-xml 
+   <Asset id="Story:#{story_data[:number]}">
+    <Attribute name="Owners.Name">
+ 	    <Value>#{story_data[:owner]}</Value>
+ 	  </Attribute>
+ 	  <Attribute name="Estimate">#{story_data[:estimate]}</Attribute>
+ 	  <Attribute name="Description">#{story_data[:description]}</Attribute>
+    <Attribute name="Name">#{story_data[:title]}</Attribute>
+    <Attribute name="Scope.Name">#{story_data[:theme]}</Attribute>
+    <Attribute name="Timebox.Name">#{story_data[:iteration]}</Attribute>
+   </Asset>
+   xml
 end
 
 
