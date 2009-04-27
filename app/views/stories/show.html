@@ -9,13 +9,20 @@
 </head>
 
 <body>
-	<h1>Story Number <%= @story.number %></h1>
-	<p>Information</p>
-	<ul>
-		<li><%= @story.title%></li>
-		<li><%= @story.theme%></li>
-		<li><%= @story.description%></li>
-		<li><%= @story.owner%></li>
-	</ul>
+	<div id="story">
+		<div id="header">
+			<span id="number"><%= @story.number %></span>
+			<span id="theme"><%= @story.theme %></span>
+			<span id="estimate"><%= @story.estimate %></span>
+		</div>
+		<div id="body">
+			<div id="title"><%= @story.title %></div>
+			<div id="description"><%= @story.description %></div>
+		</div>
+		<div id="footer">
+			<span id="owner"><%= @story.owner %></span>
+			<span id="iteration"><%= @story.iteration %></span>
+		</div>
+	</div>
 </body>
 </html>

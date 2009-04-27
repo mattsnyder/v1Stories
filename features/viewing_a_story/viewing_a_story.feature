@@ -10,7 +10,7 @@ So I can print it
 	And Description "Another description that is awesome"
 	And Owner "Jason"
 	When I go to Story 1
-	Then I should see "Number 1"
+	Then I should see "1"
 	And I should see "Dummy Story"
 	And I should see "Great theme"
 	And I should see "Another description that is awesome"
