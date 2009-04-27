@@ -83,7 +83,7 @@ describe VersionOne, "retrieving stories by iteration" do
       </Assets>
      XML
      
-   FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story?where=Timebox.Name=%27Iteration%2012%27", :string => story_xml)   
+   FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story?where=Timebox.Name=%27Iteration+1%27", :string => story_xml)   
   end
   
   it "has a method get_stories_by_iteration" do
@@ -100,6 +100,22 @@ describe VersionOne, "retrieving stories by iteration" do
   
   it "should contain a second story" do
     VersionOne.get_stories_by_iteration('Iteration 1')[:stories].should include(@story2)
+  end
+end
+
+describe VersionOne, "retrive a different iteration" do
+  before (:each) do
+    story_xml = <<-XML
+              <?xml version="1.0" encoding="UTF-8"?>
+              <Assets>
+              </Assets>
+              XML
+  
+    FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story?where=Timebox.Name=%27Iteration+30%27", :string => story_xml)
+  end
+  
+  it "should update the request url to use this iterations name" do
+    VersionOne.get_stories_by_iteration('Iteration 30')[:stories].size == 0
   end
 end
 
