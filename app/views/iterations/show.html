@@ -4,8 +4,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<title>show.html</title>
-	
+	<title><%= @stories[0].iteration %></title>
+	<% @stories.each do |story| %>
+	<div id="story">
+		<div id="header">
+			<span id="number"><%= story.number %></span>
+			<span id="theme"><%= story.theme %></span>
+			<span id="estimate"><%= story.estimate %></span>
+		</div>
+		<div id="body">
+			<div id="title"><%= story.title %></div>
+			<div id="description"><%= story.description %></div>
+		</div>
+		<div id="footer">
+			<span id="owner"><%= story.owner %></span>
+			<span id="iteration"><%= story.iteration %></span>
+		</div>
+	</div>
+	<% end %>
 </head>
 
 <body>
