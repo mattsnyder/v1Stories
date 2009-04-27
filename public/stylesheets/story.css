@@ -1,0 +1,75 @@
+#story {
+	border: 1px solid black;
+	font-family:Comic Sans MS;
+	font-size:16px;
+	height: 4in;
+	width: 6in;
+}
+
+#header {
+	position:relative;
+	left:0;
+	top:0;
+	height: 10%;
+	margin: 5px;
+}
+#number{
+	position:absolute;
+	top:0;
+	left:0;
+	font-weight: bolder;
+	font-size: larger;
+	width: 10%;
+	margin:5px;
+}
+#theme{
+	width: 80% ;
+  	margin-left: 10%;
+	margin-right: 10%;
+ 	text-align: center;
+}
+#estimate{
+	position:absolute;
+  	top:0;
+  	right:0;
+}
+
+#body{
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 50%;
+	padding: 10%;
+}
+#title{
+	text-align:center;
+	font-size:28px;
+	font-weight: boldest;
+}
+#description{
+	font-size:12px;
+	margin: 5px;
+	clip: 0 0 100% 50%;
+}
+
+#footer {
+	position: relative;
+	left:0;
+	top:0;
+	height:10%;
+}
+#owner{
+	position: absolute;
+	left:0;
+	bottom: 0;
+	margin: 10px;
+}
+#iteration{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 10px;
+}
+
+
+

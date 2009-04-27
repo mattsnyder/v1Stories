@@ -5,7 +5,7 @@ class Story
     story_attributes = VersionOne.get_story(number)
     story_attributes.inject(Story.new) do |story,pair|
       key, value = pair
-      story.send(key.to_s+"=", value)
+      story.send(key.to_s+"=", value.to_s.strip_tags)
       story
     end
   end
@@ -16,7 +16,7 @@ class Story
     iteration[:stories].map do |story|
       story.inject(Story.new) do |story,pair|
         key, value = pair
-        story.send(key.to_s+"=", value)
+        story.send(key.to_s+"=", value.to_s.strip_tags)
         story
       end
       

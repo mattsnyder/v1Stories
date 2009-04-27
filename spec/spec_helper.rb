@@ -89,4 +89,17 @@ Spec::Matchers.define(:have_a_story_with_title) do |expected_title|
 
 end
 
+Spec::Matchers.define(:end_with) do |expected_string_ending|
+  match do |string|
+    string.length.should > expected_string_ending.length
+    string.slice(-1*expected_string_ending.length, expected_string_ending.length) == expected_string_ending
+  end
+
+  failure_message_for_should do |string|
+    msg = "expected to string to end with '#{expected_string_ending}', but string ended with "
+    msg << "'#{string.slice(-1*expected_string_ending.length, expected_string_ending.length)}'"
+  end
+
+end
+
 

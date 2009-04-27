@@ -2,20 +2,13 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Story, "find by id" do
   before(:each) do
-    @valid_attributes = {
-      :number => 5,
-      :title => "Print a card",
-      :theme => "Version One Extensions",
-      :description => "Jason wants to see a story from version one so he can print it.", 
-      :owner => 'Cool like cats'
-    }
     @valid_attributes = new_story_data("Print a card", "Jason wants to see a story from version one so he can print it.", "Version One Extensions", "Cool man joe")
     VersionOne.stub!(:get_story).and_return @valid_attributes
     @story = Story.find(5)
   end
 
   it "has a number" do
-    @story.number.should == @valid_attributes[:number]
+    @story.number.should == @valid_attributes[:number].to_s
   end
   
   it "has a title" do
@@ -32,6 +25,32 @@ describe Story, "find by id" do
   
   it "has an owner" do
     @story.owner.should == @valid_attributes[:owner]
+  end
+end
+
+describe Story, "find by id removes html tags from the description" do
+  before(:each) do
+   @valid_attributes = new_story_data("Print a card", "<b>Hello World</b><div>more content</div><li>one</li><li>two</li>", "Version One Extensions", "Cool man joe")
+    VersionOne.stub!(:get_story).and_return @valid_attributes
+    @story = Story.find(5)
+  end
+  
+  it "should strip out tags" do
+    @story.description.should == "Hello Worldmore contentonetwo"
+  end
+end
+
+describe Story, "find by iteration removes html tags from the description" do
+  before(:each) do
+    story_data = new_story_data("Print a card", "<b>Hello World</b><div>more content</div><li>one</li><li>two</li>", "Version One Extensions", "Cool man joe")
+    @iteration = {}
+    @iteration[:stories] = [story_data]
+    VersionOne.stub!(:get_stories_by_iteration).and_return @iteration
+    @story = Story.find_by_iteration("Iteration 10")[0]
+  end
+  
+  it "should strip out tags" do
+    @story.description.should == "Hello Worldmore contentonetwo"
   end
 end
 
