@@ -1,9 +1,19 @@
+html {
+	margin: 0;
+	padding: 0;
+}
+body {
+	margin: 0;
+	padding: 0;
+}
 #story {
-	border: 1px solid black;
+	page-break-after: always;
+	margin: 0;
+	padding: 0;
 	font-family:Comic Sans MS;
 	font-size:16px;
-	height: 4in;
-	width: 6in;
+	height: 3.3in;
+	width: 5.5in;
 }
 
 #header {
@@ -11,16 +21,13 @@
 	left:0;
 	top:0;
 	height: 10%;
-	margin: 5px;
 }
 #number{
 	position:absolute;
 	top:0;
 	left:0;
-	font-weight: bolder;
-	font-size: larger;
-	width: 10%;
-	margin:5px;
+	font-weight: bold;
+	font-size: 24px;
 }
 #theme{
 	width: 80% ;
@@ -32,24 +39,26 @@
 	position:absolute;
   	top:0;
   	right:0;
+	font-size: 24px;
+	font-weight: bold;
 }
 
 #body{
 	position: relative;
 	top: 0;
 	left: 0;
-	height: 50%;
+	height: 45%;
 	padding: 10%;
 }
 #title{
 	text-align:center;
-	font-size:28px;
-	font-weight: boldest;
+	font-size:42px;
+	font-weight: bold;
 }
 #description{
+	text-align:center;
 	font-size:12px;
 	margin: 5px;
-	clip: 0 0 100% 50%;
 }
 
 #footer {
@@ -62,13 +71,11 @@
 	position: absolute;
 	left:0;
 	bottom: 0;
-	margin: 10px;
 }
 #iteration{
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	margin: 10px;
 }
 
 

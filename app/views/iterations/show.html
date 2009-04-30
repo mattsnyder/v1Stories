@@ -4,8 +4,11 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-	<%= stylesheet_link_tag "story" %>
+	<%= stylesheet_link_tag "story", :media => "all" %>
 	<title><%= @stories[0].iteration %></title>
+</head>
+
+<body>
 	<% @stories.each do |story| %>
 	<div id="story">
 		<div id="header">
@@ -23,9 +26,5 @@
 		</div>
 	</div>
 	<% end %>
-</head>
-
-<body>
-	
 </body>
 </html>
