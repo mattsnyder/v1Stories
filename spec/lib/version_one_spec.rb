@@ -52,7 +52,6 @@ describe VersionOne, "building the request url" do
 
   it "should append the story number to the V1 Story Data Url" do
     FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story/1212", :string => "<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
-    puts VersionOne.get_story(1212).should be_empty
   end
   
 end
