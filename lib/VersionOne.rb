@@ -22,8 +22,8 @@ class VersionOne
   
   private
   WEBSITE_ROOT = "www10.v1host.com"
-  V1_USER_NAME = "developer"
-  V1_PASSWORD = "developer"
+  V1_USER_NAME = "grange1"
+  V1_PASSWORD = "ohiostate"
   
   def self.request_data(target)
     story_data = ""

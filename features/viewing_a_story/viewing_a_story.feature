@@ -15,3 +15,10 @@ So I can print it
 	And I should see "Great theme"
 	And I should see "Another description that is awesome"
 	And I should see "Jason"
+	
+	Scenario: Long descriptions are truncated
+	Given a story with Number "1"
+	And Description "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ornare ultricies nisi. Sed condimentum, mauris tempus rutrum cursus, elit odio pulvinar ante, sed vehicula nisi leo non risus. Aliquam erat volutpat. Cras venenatis euismod orci. Suspendisse in"
+	When I go to Story 1
+	Then I should not see ". Suspendisse in"
+	And I should see ". Suspen..."

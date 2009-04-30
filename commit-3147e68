@@ -1,0 +1,36 @@
+commit 3147e6857611fd3677d03404dcb0fb03c3e10c91
+Author: Matt Snyder <matt.snyder@leandog.com>
+Date:   Tue Apr 28 08:54:17 2009 -0400
+
+    added truncation of description when too long
+
+diff --git a/features/viewing_a_story/viewing_a_story.feature b/features/viewing_a_story/viewing_a_story.feature
+index a95fe9a..ae8ecd9 100644
+--- a/features/viewing_a_story/viewing_a_story.feature
++++ b/features/viewing_a_story/viewing_a_story.feature
+@@ -15,3 +15,10 @@ So I can print it
+ 	And I should see "Great theme"
+ 	And I should see "Another description that is awesome"
+ 	And I should see "Jason"
++	
++	Scenario: Long descriptions are truncated
++	Given a story with Number "1"
++	And Description "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ornare ultricies nisi. Sed condimentum, mauris tempus rutrum cursus, elit odio pulvinar ante, sed vehicula nisi leo non risus. Aliquam erat volutpat. Cras venenatis euismod orci. Suspendisse in"
++	When I go to Story 1
++	Then I should not see ". Suspendisse in"
++	And I should see ". Suspen..."
+diff --git a/lib/VersionOne.rb b/lib/VersionOne.rb
+index 05ef4e9..7b29cfa 100644
+--- a/lib/VersionOne.rb
++++ b/lib/VersionOne.rb
+@@ -22,8 +22,8 @@ class VersionOne
+   
+   private
+   WEBSITE_ROOT = "www10.v1host.com"
+-  V1_USER_NAME = "developer"
+-  V1_PASSWORD = "developer"
++  V1_USER_NAME = "grange1"
++  V1_PASSWORD = "ohiostate"
+   
+   def self.request_data(target)
+     story_data = ""
