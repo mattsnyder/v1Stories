@@ -62,7 +62,7 @@ end
 
 def new_asset_xml(story_data)
    <<-xml 
-   <Asset id="Story:#{story_data[:number]}">
+   <Asset id="Story:#{rand(1000)}">
     <Attribute name="Owners.Name">
  	    <Value>#{story_data[:owner]}</Value>
  	  </Attribute>
@@ -71,6 +71,7 @@ def new_asset_xml(story_data)
     <Attribute name="Name">#{story_data[:title]}</Attribute>
     <Attribute name="Scope.Name">#{story_data[:theme]}</Attribute>
     <Attribute name="Timebox.Name">#{story_data[:iteration]}</Attribute>
+    <Attribute name="Number">#{story_data[:number]}</Attribute>
    </Asset>
    xml
 end

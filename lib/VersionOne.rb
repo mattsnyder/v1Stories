@@ -45,7 +45,7 @@ class VersionOne
        :description => asset.xpath('Attribute[@name="Description"]').text,
        :theme => asset.xpath('Attribute[@name="Scope.Name"]').text,
        :iteration => asset.xpath('Attribute[@name="Timebox.Name"]').text,
-       :number => asset.xpath('@id').text.match('[0-9]+').to_s
+       :number => asset.xpath('Attribute[@name="Number"]').text
       }
   end
 end
