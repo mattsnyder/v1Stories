@@ -4,8 +4,8 @@ require 'net/https'
 class VersionOne
   def self.get_story(number)
     begin
-      story = Nokogiri::XML(request_data("/expectmore/rest-1.v1/Data/Story/" + number.to_s))
-      collect_story_data(story.xpath('/Asset'))
+      story = Nokogiri::XML(request_data("/expectmore/rest-1.v1/Data/Story?where=Number='#{number.to_s}'"))
+      collect_story_data(story.xpath('/Assets/Asset'))
     rescue
       {}
     end

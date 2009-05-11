@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.story 'stories/:number', :controller => 'stories', :action => 'show'
   map.iteration 'iterations/:number/stories', :controller => 'iterations', :action => 'show'
+  map.login 'login', :controller => 'login', :action => 'show'
   
   # The priority is based upon order of creation: first created -> highest priority.
 

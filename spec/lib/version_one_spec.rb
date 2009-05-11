@@ -3,15 +3,22 @@ require 'FakeWeb'
 
 describe VersionOne, "find story by story number" do
   before(:each) do
-   story_xml = new_asset_xml(new_story_data("Enable card printing",
+   asset_xml = new_asset_xml(new_story_data("Enable card printing",
    "Default printing is difficult, so we need to make it easier.",
    "Version One Enhancements",
    "Jason Phillips",
    "X-Large",
    "Iteration 0",
    "8006"))
+   
+   story_xml = <<-XML 
+    <?xml version="1.0" encoding="UTF-8"?>
+     <Assets>
+       #{asset_xml} 
+     </Assets>
+    XML
      
-   FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story/8006", :string => story_xml)   
+   FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story?where=Number='8006'", :string => story_xml)   
   end
   
   it "should return a hash of data" do 
@@ -51,7 +58,7 @@ end
 describe VersionOne, "building the request url" do
 
   it "should append the story number to the V1 Story Data Url" do
-    FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story/1212", :string => "<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+    FakeWeb.register_uri(:get, "https://www10.v1host.com/expectmore/rest-1.v1/Data/Story?where=Number='1212'", :string => "<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
     VersionOne.get_story(1212).should be_empty
   end
   

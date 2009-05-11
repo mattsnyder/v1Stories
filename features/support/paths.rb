@@ -23,6 +23,9 @@ module NavigationHelpers
        
     when /Iteration 1/
       iteration_path(:number => 1)
+      
+    when /the login screen/
+      login_path
    
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
