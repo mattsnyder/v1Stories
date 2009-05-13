@@ -3,4 +3,8 @@ module ApplicationHelper
   def trim_story_description(description)
     truncate(description, :length => 250, :omission => "...")
   end
+  
+  def trim_story_title(title)
+    truncate(title, :length => 48, :omission => "...")
+  end
 end

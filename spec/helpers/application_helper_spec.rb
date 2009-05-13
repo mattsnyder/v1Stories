@@ -1,8 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
+describe ApplicationHelper, "trim_story_title" do
+  include ApplicationHelper
+  it "should trim a long title" do
+    trim_story_title("X"*50).should end_with("...") 
+    trim_story_title("X"*50).length.should == 48 
+  end
+end
+  
 describe ApplicationHelper, "trim_story_description" do
   include ApplicationHelper
-  
+    
   it "should leave a string a short string alone" do
     trim_story_description("a short line of text").should end_with("text")
   end

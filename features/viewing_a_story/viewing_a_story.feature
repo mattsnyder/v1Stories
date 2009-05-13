@@ -22,3 +22,11 @@ So I can print it
 	When I go to Story 1
 	Then I should not see ". Suspendisse in"
 	And I should see ". Suspen..."
+	
+	
+	Scenario: Long titles are truncated
+	Given a story with Number "1"
+	And Title with of "50" X's
+	When I go to Story 1
+	Then I should see "45" X's
+	And I should see "X..."

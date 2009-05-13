@@ -20,6 +20,15 @@ Given /^Owner "([^\"]*)"$/ do |owner|
   @story_data[:owner] = owner
 end
 
+Given /^Title with of "([^\"]*)" X's$/ do |length|
+  @story_data[:title] = "X" * length.to_i
+end
+
+Then /^I should see "([^\"]*)" X's$/ do |length|
+  response.should contain("X"*length.to_i)
+end
+
+
 
 
 
