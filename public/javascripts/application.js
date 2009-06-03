@@ -7,6 +7,7 @@ jQuery.ajaxSetup({
 
 jQuery.fn.displayDropdown = function(){
     this.change(function() {
+        $("#project_name").val($("#project :selected").text());
         $.post("iterations", $("#show_iteration_form").serialize(), null, "script");
         return false;       
     })

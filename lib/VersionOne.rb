@@ -11,9 +11,9 @@ class VersionOne
     end
   end
   
-  def self.get_stories_by_iteration(user,iteration_name)
+  def self.get_stories_by_iteration(user,project,iteration_name)
     stories = []
-    iteration = Nokogiri::XML(request_data(user,"/expectmore/rest-1.v1/Data/Story?where=Timebox.Name=%27#{CGI::escape(iteration_name)}%27"))
+    iteration = Nokogiri::XML(request_data(user,"/expectmore/rest-1.v1/Data/Story?where=Scope.Name=%27#{CGI::escape(project)}%27;Timebox.Name=%27#{CGI::escape(iteration_name)}%27"))
     iteration.xpath('/Assets/Asset').each do |asset|
       stories.push(collect_story_data(asset))
     end

@@ -9,7 +9,7 @@
       <div id="theme"><%= story.theme %></div>
     </div>
     <div id="body">
-        <div id="title"><%= story.title %></div>
+        <div id="title"><%= trim_story_title(story.title) %></div>
         <div id="description"><%= trim_story_description(story.description) %></div>
     </div>
     <div id="footer">

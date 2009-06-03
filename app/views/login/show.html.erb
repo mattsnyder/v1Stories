@@ -8,6 +8,7 @@
       <%= select_tag(:project,
           "<option value=''>-Select a project</option>" + options_from_collection_for_select(@projects, :schedule, :name))%>
     </div>
+    <%= hidden_field_tag(:project_name, :value => "") %>
     <div id="iterations">
       <%= render :partial => "/iterations/iterations"%>
     </div>
@@ -36,4 +37,6 @@
   </div>
   </div>
   </div>
+
+  
 

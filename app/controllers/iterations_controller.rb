@@ -7,7 +7,7 @@ layout "standard" , :except => [ :iterations ]
      flash[:notice] = "Please select a project and an iteration."
      redirect_to :controller => "login", :action => "show"
     else
-      stories = VersionOne.get_stories_by_iteration(session[:user],itr_no[:iter])
+      stories = VersionOne.get_stories_by_iteration(session[:user],params[:project_name],itr_no[:iter])
       @stories = stories
     end
 
