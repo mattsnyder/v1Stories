@@ -20,7 +20,7 @@ body {
 	position:relative;
 	left:0;
 	top:0;
-	height: 10%;
+	height: 5%;
 }
 #number{
 	position:absolute;
@@ -76,6 +76,73 @@ body {
 	position: absolute;
 	right: 0;
 	bottom: 0;
+}
+
+#logout{
+    text-decoration:none
+}
+
+
+/* START:form */
+/* Styles for login form */
+.login-form fieldset {
+  background: #efe;
+}
+
+.login-form legend {
+  color: #dfd;
+  background: #174A7C;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+
+.login-form label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+  display: block;
+}
+
+.login-form select, .login-form textarea, .login-form input {
+  margin-left: 0.5em;
+}
+
+.login-form .submit {
+  margin-left: 4em;
+}
+
+.login-form div {
+  margin: 0.5em 0;
+}
+
+.app-form img{
+    width: 22em; /* replaces 468px width */
+    height: 6em; /* replaces 60px height */
+}
+
+.app-form h1{
+    color: #174A7C;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
+.app-form p{
+    color: #174A7C;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+}
+
+
+/* START:notice */
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
 }
 
 

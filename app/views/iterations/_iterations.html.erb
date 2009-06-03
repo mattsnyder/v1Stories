@@ -1,0 +1,4 @@
+<%if iterations%>
+<label>Iterations:</label>
+<%= select 'itr_no','iter', iterations.collect {|iteration| [ iteration.name, iteration.name ] }, {:prompt   => '-Select an iteration'} %>
+<%end%>

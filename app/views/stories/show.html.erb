@@ -1,0 +1,18 @@
+<div id="story">
+    <div id="header">
+        <div id="number"><%= @story.number %></div>
+        <div id="theme"><%= @story.project %></div>
+        <div id="estimate"><%= @story.estimate %></div>
+    </div>
+    <div id="header">
+      <div id="theme"><%= @story.theme %></div>
+    </div>
+    <div id="body">
+        <div id="title"><%= trim_story_title(@story.title) %></div>
+        <div id="description"><%= trim_story_description(@story.description) %></div>
+    </div>
+    <div id="footer">
+        <div id="owner">Owner: <%= @story.owner %></div>
+        <div id="iteration"><%= @story.iteration %></div>
+    </div>
+</div>

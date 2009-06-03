@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe StoriesController do
   before(:each) do
     @story = Story.new
-    Story.stub!(:find).and_return @story
+    VersionOne.stub!(:get_story).and_return @story
   end
   
   it "responds to show" do

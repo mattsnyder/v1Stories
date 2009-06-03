@@ -1,0 +1,23 @@
+
+  <div align="center" >
+  <div class="login-form" style="width: 3.5in;">
+  <% form_tag('/validate') do %>
+  <fieldset>
+    <legend>Login</legend>
+    <div>
+      <label for="name">Username:</label>
+      <%= text_field_tag :username, params[:username] %>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <%= password_field_tag :password, params[:password] %>
+    </div>
+    <div>
+      <%= submit_tag "Login" %>
+    </div>
+  </fieldset>
+        
+  <% end %>
+  </div>
+
+  </div>

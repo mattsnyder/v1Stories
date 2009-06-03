@@ -5,7 +5,7 @@ describe IterationsController do
   before(:each) do
     @story1 = new_story("Story1")
     @story2 = new_story("Story2")
-    Story.stub!(:find_by_iteration).and_return [@story1, @story2]
+    VersionOne.stub!(:get_stories_by_iteration).and_return [@story1, @story2]
   end
 
   it "responds to show" do

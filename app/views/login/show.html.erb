@@ -1,0 +1,39 @@
+  <div align="center" >
+  <div class="login-form" style="width: 6.5in;">
+  <% form_tag('/iterations/show', :id => "show_iteration_form")  do %>
+  <fieldset>
+    <legend>Search Stories By Iteration</legend>
+    <div>      
+      <label>Project:</label>
+      <%= select_tag(:project,
+          "<option value=''>-Select a project</option>" + options_from_collection_for_select(@projects, :schedule, :name))%>
+    </div>
+    <div id="iterations">
+      <%= render :partial => "/iterations/iterations"%>
+    </div>
+    <div>
+      <%= submit_tag "Search"%>
+    </div>
+  </fieldset>
+  <% end %>
+
+    <p>
+  <% form_tag('/stories/show', :id => "show_stories_form") do %>
+    <fieldset>
+      <legend>Search Story By Number</legend>
+    <div>
+      <label>Story:</label>
+      <%= text_field_tag :story_no, params[:story_no] %>
+    </div>
+    <div>
+      <%= submit_tag "Search"%>
+    </div>
+    </fieldset>
+   <% end %>
+  <div id="logout">
+    <%= link_to_unless(@current_user.nil?, "Logout", { :action => "logout" }) %>
+    
+  </div>
+  </div>
+  </div>
+

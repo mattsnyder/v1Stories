@@ -1,8 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   map.story 'stories/:number', :controller => 'stories', :action => 'show'
-  map.iteration 'iterations/:number/stories', :controller => 'iterations', :action => 'show'
-  map.login 'login', :controller => 'login', :action => 'show'
-  
+  map.iteration '/iterations/show', :controller => 'iterations', :action => 'show'
+  map.v1Stories 'show', :controller => 'login', :action => 'show'
+  map.v1Stories 'validate', :controller => 'login', :action => 'login'
+  map.v1Stories 'v1Stories', :controller => 'login', :action => 'login'
+  map.v1Stories 'logout', :controller => 'login', :action => 'logout'
+
+  map.iteration 'iterations', :controller => 'iterations', :action => 'iterations'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
