@@ -60,18 +60,37 @@ def new_story(title, description=nil, theme=nil, owner=nil)
     }
 end
 
+def new_story_instance(title, description=nil, theme=nil, owner=nil, estimate=nil, iteration=nil, number=nil)
+  story = Story.new
+  story.title =title
+  story.description=description
+  story.theme=theme
+  story.owner=owner
+  story.estimate=estimate
+  story.iteration=iteration
+  story.number=number
+  story
+
+end
+def new_project(name, schedule)
+  project = Project.new
+  project.name=name
+  project.schedule=schedule
+  project
+end
+
 def new_asset_xml(story_data)
    <<-xml 
    <Asset id="Story:#{rand(1000)}">
     <Attribute name="Owners.Name">
- 	    <Value>#{story_data[:owner]}</Value>
+ 	    <Value>#{story_data.owner}</Value>
  	  </Attribute>
- 	  <Attribute name="Estimate">#{story_data[:estimate]}</Attribute>
- 	  <Attribute name="Description">#{story_data[:description]}</Attribute>
-    <Attribute name="Name">#{story_data[:title]}</Attribute>
-    <Attribute name="Scope.Name">#{story_data[:theme]}</Attribute>
-    <Attribute name="Timebox.Name">#{story_data[:iteration]}</Attribute>
-    <Attribute name="Number">#{story_data[:number]}</Attribute>
+ 	  <Attribute name="Estimate">#{story_data.estimate}</Attribute>
+ 	  <Attribute name="Description">#{story_data.description}</Attribute>
+    <Attribute name="Name">#{story_data.title}</Attribute>
+    <Attribute name="Scope.Name">#{story_data.theme}</Attribute>
+    <Attribute name="Timebox.Name">#{story_data.iteration}</Attribute>
+    <Attribute name="Number">#{story_data.number}</Attribute>
    </Asset>
    xml
 end
@@ -86,6 +105,29 @@ Spec::Matchers.define(:have_a_story_with_title) do |expected_title|
     msg = "expected to find a story with title #{expected_title}, but story list contained "
     story_titles = story_list.map(&:title)
     msg + story_titles.join(", ")
+  end
+
+end
+
+Spec::Matchers.define(:have_a_project_with_name_and_schedule) do |expected_name,expected_schedule|
+  match do |project_list|
+    project_list.any? {|project| project.name == expected_name; project.schedule == expected_schedule}
+  end
+
+  failure_message_for_should do |project_list|
+    msg = "expected to find a project with name #{expected_name} and schedule #{expected_schedule}, but project list contained "
+    project_names = project_list.map(&:name) 
+    msg + project_names.join(", ")
+  end
+
+end
+
+Spec::Matchers.define(:contain_the_user) do |expected_username,expected_password|
+  match do |session|
+      session != nil
+  end
+  failure_message_for_should do |session|
+    msg = "expected to find a user with name #{expected_username} and password #{expected_password}, but session did not contain the user"
   end
 
 end

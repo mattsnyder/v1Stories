@@ -3,17 +3,12 @@ class StoriesController < ApplicationController
 
   def show
     @title = "Story"
-    story_number = params[:story_no]
-    user = session[:user]
-    if request.post?
-      @story = VersionOne.get_story(user,story_number)
-      if @story.number.eql?""
-        flash[:notice] = "No story found. Please refine your search."
-        redirect_to :controller=>"login", :action =>"show"
-      else
-        @story
-      end
+    @story = VersionOne.get_story(session[:user],params[:story_no])
+    if @story.title.blank?
+      flash[:notice] = APP_CONFIG["NO_STORY_FOUND"]
+      redirect_to :controller=>"search", :action=>"error"
+    else
+      @story
     end
   end
-
 end

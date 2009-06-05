@@ -284,7 +284,7 @@ module Webrat
     # rather than the form id.
     #
     # Example:
-    #   submit_form 'login'
+    #   submit_form 'show'
     def submit_form(id)
       FormLocator.new(@session, dom, id).locate.submit
     end

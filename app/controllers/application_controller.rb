@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def  login_required
     if session[:user].nil?
-      flash[:notice] = "Please log in"
+      flash[:notice] = APP_CONFIG["NOT_LOGGED"]
       redirect_to :controller => 'login', :action => 'login'
     end
   end

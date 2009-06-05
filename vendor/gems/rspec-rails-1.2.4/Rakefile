@@ -50,7 +50,7 @@ task :release => [:clean, :package] do |t|
 
   rubyforge = RubyForge.new.configure
   puts "Logging in to rubyforge ..."
-  rubyforge.login
+  rubyforge.show
 
   puts "Releasing rspec-rails version #{version} ..."
   ["#{pkg}.gem", "#{pkg}.tgz"].each do |file|

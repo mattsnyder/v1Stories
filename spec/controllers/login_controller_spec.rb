@@ -1,31 +1,37 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe LoginController, "authenticating valid user login" do
+describe LoginController do
+
   before(:each) do
-    @valid_user = true
-    VersionOne.stub!(:authenticate_user).and_return @valid_user
+    LoginController.skip_before_filter :require_login 
   end
 
-  it "should show the home page" do
-
-  end
-  it "should store the user in session" do
-
+  it "should use LoginController" do
+    controller.should be_an_instance_of(LoginController)
   end
 
-end
-
-describe LoginController, "authenticating invalid user login" do
-  before(:each) do
-    @valid_user = false
-    VersionOne.stub!(:authenticate_user).and_return @valid_user
+  it "should be successful" do
+    get 'login'
+    response.should be_success
   end
 
-  it "should show the login page" do
-
+  context "when authenticating valid user" do
+    integrate_views
+    it "should redirect to search show" do
+     VersionOne.stub!(:authenticate_user).and_return false
+     post:login, :username =>"developer",:password=>"developer"
+     response.should redirect_to(:controller=>"search",:action=>"show")
+    end
   end
-  it "should display the error message" do
 
+  context "when authenticating invalid user" do
+    integrate_views
+    it "should redirect to search show" do
+     VersionOne.stub!(:authenticate_user).and_return true
+     post:login, :username =>"developer",:password=>"developer"
+     flash[:notice].should_not be_nil
+     response.should redirect_to(:action=>"login")
+    end
   end
 
 end

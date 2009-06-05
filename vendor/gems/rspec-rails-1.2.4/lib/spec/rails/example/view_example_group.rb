@@ -33,13 +33,13 @@ module Spec
       #
       # == Example
       #
-      #   describe "login/login" do
+      #   describe "show/show" do
       #     before do
-      #       render 'login/login'
+      #       render 'show/show'
       #     end
       # 
-      #     it "should display login form" do
-      #       response.should have_tag("form[action=/login]") do
+      #     it "should display show form" do
+      #       response.should have_tag("form[action=/show]") do
       #         with_tag("input[type=text][name=email]")
       #         with_tag("input[type=password][name=password]")
       #         with_tag("input[type=submit][value=Login]")

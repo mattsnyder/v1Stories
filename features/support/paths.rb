@@ -24,7 +24,7 @@ module NavigationHelpers
     when /Iteration 1/
       iteration_path(:number => 1)
       
-    when /the login screen/
+    when /the show screen/
       login_path
    
     else

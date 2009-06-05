@@ -4,8 +4,9 @@ require 'net/https'
 class VersionOne
   def self.get_story(user,number)
     begin
-      story = Nokogiri::XML(request_data(user,"/expectmore/rest-1.v1/Data/Story?where=Number='#{number.to_s}'"))
-      collect_story_data(story.xpath('/Assets/Asset'))
+      target = APP_CONFIG["SEARCH_TARGET"]+APP_CONFIG["QUERY_BY_STORY"]+"'#{number.to_s}'"
+      story_xml = Nokogiri::XML(request_data(user,target))
+      story=collect_story_data(story_xml.xpath('/Assets/Asset'))
     rescue
       {}
     end
@@ -13,7 +14,11 @@ class VersionOne
   
   def self.get_stories_by_iteration(user,project,iteration_name)
     stories = []
-    iteration = Nokogiri::XML(request_data(user,"/expectmore/rest-1.v1/Data/Story?where=Scope.Name=%27#{CGI::escape(project)}%27;Timebox.Name=%27#{CGI::escape(iteration_name)}%27"))
+    target = APP_CONFIG["SEARCH_TARGET"]+
+             APP_CONFIG["QUERY_BY_SCOPE"]+"%27#{CGI::escape(project)}%27"+
+             APP_CONFIG["AND"]+
+             APP_CONFIG["QUERY_BY_ITERATION"]+"%27#{CGI::escape(iteration_name)}%27"
+    iteration = Nokogiri::XML(request_data(user,target))
     iteration.xpath('/Assets/Asset').each do |asset|
       stories.push(collect_story_data(asset))
     end
@@ -22,8 +27,7 @@ class VersionOne
 
 
   def self.authenticate_user(user)
-      project = "Grange"
-      message = Nokogiri::XML(request_data(user,"/expectmore/rest-1.v1"))
+      message = Nokogiri::XML(request_data(user,APP_CONFIG['LOGIN_TARGET']))
       message = collect_message_data(message.xpath('/Error'))
       return message.eql? "Unauthorized"
   end
@@ -31,7 +35,7 @@ class VersionOne
   def self.get_project(user)
     begin
       projects = []
-      project_data = Nokogiri::XML(request_data(user,"/expectmore/rest-1.v1/Data/Scope"))
+      project_data = Nokogiri::XML(request_data(user,APP_CONFIG['PROJECT_TARGET']))
       project_data.xpath('/Assets/Asset').each do |project|
         projects.push(collect_project_data(project))
       end
@@ -44,7 +48,9 @@ class VersionOne
     def self.get_iterations_for_project(user, project)
     begin
       iterations = []
-      iteration_data = Nokogiri::XML(request_data(user,"/expectmore/rest-1.v1/Data/Timebox?sel=Name&where=Schedule.Name=%27#{CGI::escape(project)}%27"))
+      target = APP_CONFIG["SEARCH_TARGET"]+
+               APP_CONFIG["QUERY_FOR_ITRS_BY_PROJECT"]+"%27#{CGI::escape(project)}%27"
+      iteration_data = Nokogiri::XML(request_data(user,target))
       iteration_data.xpath('/Assets/Asset').each do |iteration|
         iterations.push(collect_iteration_data(iteration))
       end
@@ -55,11 +61,10 @@ class VersionOne
   end
   
   private
-  WEBSITE_ROOT = "www10.v1host.com"
   
   def self.request_data(user,target)
     story_data = ""
-    http = Net::HTTP.new(WEBSITE_ROOT, 443)
+    http = Net::HTTP.new(APP_CONFIG['WEBSITE_ROOT'], 443)
     http.use_ssl = true
     http.start do |http|
       req = Net::HTTP::Get.new(target)
@@ -103,5 +108,3 @@ class VersionOne
   end
 
 end
-
-

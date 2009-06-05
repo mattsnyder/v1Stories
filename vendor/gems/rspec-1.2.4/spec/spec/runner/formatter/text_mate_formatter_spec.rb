@@ -73,11 +73,11 @@ module Spec
                expected_html.gsub! seconds, 'x seconds'
 
                doc = Nokogiri::HTML(html)
-               backtraces = doc.search("div.backtrace a")
-               doc.search("div.backtrace").remove
+               backtraces = doc.show("div.backtrace a")
+               doc.show("div.backtrace").remove
 
                expected_doc = Nokogiri::HTML(expected_html)
-               expected_doc.search("div.backtrace").remove
+               expected_doc.show("div.backtrace").remove
 
                doc.inner_html.should == expected_doc.inner_html
 

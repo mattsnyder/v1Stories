@@ -3,3 +3,8 @@ log/*.log
 tmp/**/*
 .idea
 tmp
+vendor/gems/rspec-1.2.4/spec/spec/runner/formatter/html_formatter_spec.rb
+vendor/gems/rspec-1.2.4/spec/spec/runner/formatter/text_mate_formatter_spec.rb
+vendor/gems/rspec-rails-1.2.4/Rakefile
+vendor/gems/rspec-rails-1.2.4/lib/spec/rails/example/view_example_group.rb
+vendor/gems/webrat-0.4.4/lib/webrat/core/scope.rb
