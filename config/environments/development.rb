@@ -16,8 +16,8 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-config.gem "rspec", :lib => false, :version => ">=1.2.4"
-config.gem "rspec-rails", :lib => false, :version => ">=1.2.4"
+config.gem "rspec", :lib => false, :version => ">=1.2.7"
+config.gem "rspec-rails", :lib => false, :version => ">=1.2.7"
 config.gem "webrat", :lib => false, :version => ">=0.4.4"
-config.gem "cucumber", :lib => false, :version => ">=0.3.6"
+config.gem "cucumber", :lib => false, :version => ">=0.3.9"
 config.gem "fakeweb", :lib => false, :version => ">=1.2.2"
