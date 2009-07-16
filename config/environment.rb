@@ -44,7 +44,5 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   config.action_controller.session_store = :cookie_store
   
-  require 'plugins/app_config/lib/configuration'
-  
-  
+    
 end
