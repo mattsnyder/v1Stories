@@ -5,6 +5,7 @@ module ApplicationHelper
   end
   
   def trim_story_title(title)
-    truncate(title, :length => 100, :omission => "...")
+    #truncate(title, :length => 100, :omission => "...")
+    title
   end
 end
